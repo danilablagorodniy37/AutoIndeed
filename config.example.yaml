@@ -1,0 +1,69 @@
+# ============================================================================
+# Indeed auto-apply configuration. Copy to config.yaml and fill in your data.
+#   cp config.example.yaml config.yaml
+# config.yaml is gitignored — never commit your real personal data.
+# ============================================================================
+
+search:
+  # The job search query, e.g. "python developer", "data analyst"
+  query: "python developer"
+  # Location string Indeed understands, e.g. "Remote", "Berlin", "New York, NY"
+  location: "Remote"
+  # Indeed domain for your country (de.indeed.com, uk.indeed.com, www.indeed.com ...)
+  domain: "www.indeed.com"
+  # Only consider jobs posted within this many days (Indeed fromage param). 1,3,7,14
+  posted_within_days: 7
+  # Max number of jobs to process in one run
+  max_jobs: 15
+
+behavior:
+  # "review"  -> fill everything, then pause for you to verify + submit
+  # "auto"    -> auto-submit applications (single OR multi-page) when every answer
+  #              is known from the store/config/profile; jobs needing AI answers
+  #              follow the auto_submit_with_ai setting below.
+  # "collect" -> only gather matching jobs to a file, never fill forms
+  mode: "auto"
+  # If true, also auto-submit jobs that required AI-drafted answers.
+  # If false (default), those jobs are filled but flagged for your review instead.
+  auto_submit_with_ai: false
+  # Seconds to wait at the review pause so you can read/click submit (auto mode skips this).
+  review_pause_seconds: 120
+  # Human-like random delay range (seconds) between actions, to look less like a bot.
+  min_delay: 1.5
+  max_delay: 4.0
+
+profile:
+  # These are matched against Indeed application questions by the answer engine.
+  first_name: "Jane"
+  last_name: "Doe"
+  full_name: "Jane Doe"
+  email: "jane.doe@example.com"
+  phone: "+1 555 123 4567"
+  city: "Remote"
+  country: "United States"
+  linkedin: "https://linkedin.com/in/janedoe"
+  website: ""
+  # Path to your resume file to upload (PDF recommended). Absolute path or relative to this dir.
+  resume_path: "resume.pdf"
+
+# Pre-defined answers. The engine matches each application question against these
+# keys by meaning (not exact text) before asking the AI. Add anything you get asked often.
+answers:
+  years_of_experience: "5"
+  work_authorization: "Yes, I am authorized to work in this country"
+  require_sponsorship: "No"
+  willing_to_relocate: "No"
+  notice_period: "2 weeks"
+  desired_salary: "Negotiable"
+  available_start_date: "Immediately"
+  highest_education: "Bachelor's degree"
+  expected_hourly_rate: "Negotiable"
+
+ai:
+  # Claude model used to draft answers to free-text questions from your resume.
+  model: "claude-opus-4-8"
+  # low | medium | high — higher = more thoughtful, more tokens.
+  effort: "low"
+  # If true, the AI may draft free-text answers it has no config match for.
+  # If false, unknown free-text questions are left blank and the job is flagged.
+  draft_unknown: true

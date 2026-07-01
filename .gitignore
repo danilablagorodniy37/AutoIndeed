@@ -1,0 +1,9 @@
+config.yaml
+answers_store.json
+.browser_profile/
+.venv/
+__pycache__/
+*.pyc
+resume.pdf
+resume.txt
+.env
