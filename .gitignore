@@ -1,9 +1,54 @@
+# ============================================================================
+# Secrets & personal data — NEVER commit. Safe to publish this repo publicly.
+# ============================================================================
+# Hidden folder that holds all private/personal data (answer store, etc.).
+.secrets/
+
+# Your real config (personal profile, answers). Only config.example.yaml is tracked.
 config.yaml
+config.local.yaml
+*.local.yaml
+
+# Legacy location of the answer store (kept ignored in case an old run wrote it).
 answers_store.json
-.browser_profile/
-.venv/
-__pycache__/
-*.pyc
+
+# Environment / API keys
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Resume / personal documents
 resume.pdf
 resume.txt
-.env
+resume.docx
+*.resume.*
+
+# Browser automation profile (may contain logged-in sessions/cookies)
+.browser_profile/
+
+# ============================================================================
+# Python
+# ============================================================================
+.venv/
+venv/
+env/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# ============================================================================
+# OS / editor cruft
+# ============================================================================
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+*.log
+*.tmp

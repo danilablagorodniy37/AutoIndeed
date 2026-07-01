@@ -5,7 +5,7 @@ Usage:
     python main.py --config x.yaml
     python main.py --dry-run       # force collect mode (no form filling)
 
-The answer store (answers_store.json) is checked first for every question and
+The answer store (.secrets/answers_store.json) is checked first for every question and
 grows over time so repeated questions are answered instantly without the AI.
 """
 from __future__ import annotations

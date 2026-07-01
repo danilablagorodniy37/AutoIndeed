@@ -5,7 +5,7 @@ by a normalized form of the question text. On future questions we look here FIRS
 and reuse a previous answer instead of re-deriving it. The store accrues over time
 into your personal Q&A knowledge base.
 
-Format on disk (answers_store.json):
+Format on disk (.secrets/answers_store.json — hidden + gitignored):
     {
       "entries": [
         {"question": "...", "norm": "...", "answer": "...",
@@ -22,7 +22,10 @@ from difflib import SequenceMatcher
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-DEFAULT_PATH = ROOT / "answers_store.json"
+# Personal Q&A data lives in a hidden, gitignored folder so the repo stays safe
+# to publish. Everything under .secrets/ is kept out of version control.
+SECRETS_DIR = ROOT / ".secrets"
+DEFAULT_PATH = SECRETS_DIR / "answers_store.json"
 
 # How similar a stored question must be to count as the same question (0..1).
 MATCH_THRESHOLD = 0.86
@@ -141,6 +144,7 @@ class AnswerStore:
     def save(self) -> None:
         if not self._dirty:
             return
+        self.path.parent.mkdir(parents=True, exist_ok=True)
         tmp = self.path.with_suffix(".tmp")
         payload = {"entries": [e.to_dict() for e in self.entries]}
         tmp.write_text(json.dumps(payload, indent=2, ensure_ascii=False), encoding="utf-8")

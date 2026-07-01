@@ -14,7 +14,7 @@ browser** so you can log in, solve CAPTCHAs, and review before anything risky.
 
 For every application question, in order:
 
-1. **Answer store** (`answers_store.json`) — if you (or a past run) answered this
+1. **Answer store** (`.secrets/answers_store.json`) — if you (or a past run) answered this
    or a near-identical question before, it's reused instantly. The store grows
    automatically every run, so over time fewer questions need the AI.
 2. **Config answers** — the `answers:` and `profile:` blocks in `config.yaml`,

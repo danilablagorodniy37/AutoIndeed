@@ -1,8 +1,8 @@
-"""Seed answers_store.json with the most common Indeed screening questions.
+"""Seed .secrets/answers_store.json with the most common Indeed screening questions.
 
 Personal answers (salary, experience, work auth, contact details) are pulled from
 your config.yaml so they're correct for you. The rest get safe, low-risk generic
-defaults you can edit afterwards in answers_store.json.
+defaults you can edit afterwards in .secrets/answers_store.json.
 
 Usage:
     python seed.py                 # add seeds that aren't already in the store
@@ -109,7 +109,7 @@ def main() -> int:
     print(f"[seed] config: {args.config}")
     print(f"[seed] added/updated {added}, skipped {skipped} already-present")
     print(f"[seed] store size: {before} -> {len(store)}")
-    print("[seed] review/edit answers in answers_store.json (source: \"seed\").")
+    print("[seed] review/edit answers in .secrets/.secrets/answers_store.json (source: \"seed\").")
     return 0
 
 
